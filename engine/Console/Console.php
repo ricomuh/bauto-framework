@@ -87,12 +87,6 @@ class Console extends Kernel
      */
     public function createMigration(string $name, string $tableName, string $table)
     {
-
-        // $this->copyFileFromStub('migration', $this->appDir . 'Database/Migrations/' . $name . '.php', [
-        //     '{{name}}' => str($name)->studlyCase(),
-        //     '{{table}}' => str($tableName)->plural()->snakeCase(),
-        //     '{{columns}}' => $table,
-        // ]);
         $this->copyFileFromStubThenPutInFile('migration_cell', $this->appDir . 'Database/Migrations/Migration.php', [
             '{{table}}' => str($tableName)->plural()->snakeCase(),
             '{{columns}}' => $table,

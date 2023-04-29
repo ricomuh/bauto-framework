@@ -60,7 +60,7 @@ trait TableConfiguration
         }
 
         if ($timestamps) {
-            $table .= "\t\t\t\$column->timestamps();\n";
+            $table .= "\t\t\t\$column->timestamps();";
         }
 
         return $table;
