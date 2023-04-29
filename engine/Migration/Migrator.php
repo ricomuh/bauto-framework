@@ -77,7 +77,7 @@ class Migrator
      */
     public static function migrate()
     {
-        $migrator = new Migrator();
+        $migrator = new static;
         $migrator->run();
         $migrator->setUpQueries();
         foreach ($migrator->queries as $query) {
@@ -92,7 +92,7 @@ class Migrator
      */
     public static function rollback()
     {
-        $migrator = new Migrator();
+        $migrator = new static;
         $migrator->run();
         $migrator->setDownQueries();
         foreach ($migrator->queries as $query) {
