@@ -147,4 +147,23 @@ class RouterKernel
             return;
         }
     }
+
+    public static function getUrl($route, $params = [])
+    {
+        $route = new static;
+        $route->application($route->route);
+
+        $routes = $route->route->getRoutes();
+        foreach ($routes as $route) {
+            if ($route['name'] == $route) {
+                $url = $route['path'];
+                foreach ($params as $key => $value) {
+                    $url = str_replace(':' . $key, $value, $url);
+                }
+                return $url;
+            }
+        }
+
+        return null;
+    }
 }

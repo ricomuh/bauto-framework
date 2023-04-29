@@ -89,13 +89,9 @@ if (!function_exists('route')) {
      */
     function route($route, $params = [])
     {
-        $url = url($route);
+        $route = \App\Router::getUrl($route, $params);
 
-        if (!empty($params)) {
-            $url .= '?' . http_build_query($params);
-        }
-
-        return $url;
+        return url($route);
     }
 }
 
