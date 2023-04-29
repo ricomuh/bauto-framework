@@ -75,12 +75,13 @@ class Migrator
      * 
      * @return void
      */
-    public function migrate()
+    public static function migrate()
     {
-        $this->run();
-        $this->setUpQueries();
-        foreach ($this->queries as $query) {
-            $this->runQuery($query);
+        $migrator = new Migrator();
+        $migrator->run();
+        $migrator->setUpQueries();
+        foreach ($migrator->queries as $query) {
+            $migrator->runQuery($query);
         }
     }
 
@@ -89,12 +90,13 @@ class Migrator
      * 
      * @return void
      */
-    public function rollback()
+    public static function rollback()
     {
-        $this->run();
-        $this->setDownQueries();
-        foreach ($this->queries as $query) {
-            $this->runQuery($query);
+        $migrator = new Migrator();
+        $migrator->run();
+        $migrator->setDownQueries();
+        foreach ($migrator->queries as $query) {
+            $migrator->runQuery($query);
         }
     }
 
