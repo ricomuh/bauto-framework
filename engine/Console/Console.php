@@ -96,7 +96,7 @@ class Console extends Kernel
         $this->copyFileFromStubThenPutInFile('migration_cell', $this->appDir . 'Database/Migrations/Migration.php', [
             '{{table}}' => str($tableName)->plural()->snakeCase(),
             '{{columns}}' => $table,
-        ], 4, true);
+        ], 3, true);
     }
 
     /**
