@@ -103,7 +103,7 @@ class Console extends Kernel
      */
     public function createModel(string $name)
     {
-        $this->copyFileFromStub('model',  $this->appDir . 'Databases/Models/' . $name . '.php', [
+        $this->copyFileFromStub('model',  $this->appDir . 'Database/Models/' . $name . '.php', [
             '{{name}}' => str($name)->studlyCase(),
         ]);
     }
