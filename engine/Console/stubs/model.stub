@@ -6,12 +6,9 @@ use Bago\Database\Model;
 
 class {{name}} extends Model
 {
-    protected $table = '{{plural}}';
 
     public function factory()
     {
-        return [
-            {{fields}}
-        ];
+        return [];
     }
 }

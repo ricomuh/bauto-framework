@@ -65,6 +65,17 @@ class Console extends Kernel
     }
 
     /**
+     * Execute the new:controller command
+     * 
+     * @return void
+     */
+    public function newController()
+    {
+        $name = Logger::ask('Controller name: ');
+        $this->createController($name);
+    }
+
+    /**
      * Create a new migration
      * 
      * @param string $name
@@ -78,6 +89,32 @@ class Console extends Kernel
             '{{name}}' => str($name)->studlyCase(),
             '{{table}}' => str($tableName)->plural()->snakeCase(),
             '{{columns}}' => $table,
+        ]);
+    }
+
+    /**
+     * Create a new model
+     * 
+     * @param string $name
+     * @return void
+     */
+    public function createModel(string $name)
+    {
+        $this->copyFileFromStub('model', __DIR__ . '/app/Databases/Models/' . $name . '.php', [
+            '{{name}}' => str($name)->studlyCase(),
+        ]);
+    }
+
+    /**
+     * Create a new controller
+     * 
+     * @param string $name
+     * @return void
+     */
+    public function createController(string $name)
+    {
+        $this->copyFileFromStub('controller', __DIR__ . '/app/Http/Controllers/' . $name . '.php', [
+            '{{controller}}' => str($name)->studlyCase(),
         ]);
     }
 }
