@@ -159,6 +159,14 @@ class DB
             return rtrim($string, ',');
         }
 
+        $array = array_map(function ($value) use ($useQuotes) {
+            if ($useQuotes && !is_numeric($value)) {
+                $value = $this->db->escape($value);
+                return "'{$value}'";
+            }
+            return $value;
+        }, $array);
+
         return implode($separator, $array);
     }
 

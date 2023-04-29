@@ -32,7 +32,7 @@ class Model
      *
      * @var bool
      */
-    protected $timestamps = false;
+    protected $timestamps = true;
 
     /**
      * The value of the model's primary key.
