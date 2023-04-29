@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use Bago\Http\Controller;
+use Engine\Handler\Controller;
 
 class {{controller}}Controller extends Controller
 {

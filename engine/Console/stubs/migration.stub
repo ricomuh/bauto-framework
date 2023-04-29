@@ -2,8 +2,8 @@
 
 namespace App\Database\Migrations;
 
-use Bago\Database\Migrator;
-use Bago\Database\Column;
+use Engine\Migration\Migrator;
+use Engine\Migration\Column;
 
 class {{name}} extends Migrator
 {

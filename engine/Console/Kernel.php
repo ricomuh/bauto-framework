@@ -4,15 +4,54 @@ namespace Engine\Console;
 
 class Kernel
 {
+    /**
+     * The command
+     * 
+     * @var string
+     */
     protected $command = '';
+
+    /**
+     * The parsed parameters
+     * 
+     * @var array
+     */
     protected $parsedParams = [];
+
+    /**
+     * The parameters
+     * 
+     * @var array
+     */
     protected $params = [];
+
+    /**
+     * The flags
+     * 
+     * @var array
+     */
     protected $flags = [];
 
+    /**
+     * The stubs directory
+     * 
+     * @var string
+     */
     protected $stubsDir = __DIR__ . './vendor/ricomuh/bauto/engine/Console/stubs';
 
+    /**
+     * The commands
+     * 
+     * @var array
+     */
     protected $commands = [];
 
+    /**
+     * Run the console
+     * 
+     * @param array $argv
+     * @return void
+     */
     public static function run($argv)
     {
         $console = new Console();
@@ -74,7 +113,7 @@ class Kernel
      */
     public function copyFileFromStub($stub, $destination, $replace = [])
     {
-        $file = file_get_contents($stub);
+        $file = file_get_contents($this->stubsDir . '/' . $stub . '.stub');
         foreach ($replace as $key => $value) {
             $file = str_replace($key, $value, $file);
         }
