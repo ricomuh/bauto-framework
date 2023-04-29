@@ -2,7 +2,7 @@
 
 namespace App\Database\Models;
 
-use Bago\Database\Model;
+use Engine\Database\Model;
 
 class {{name}} extends Model
 {
