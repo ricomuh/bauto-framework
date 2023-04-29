@@ -128,6 +128,29 @@ class Kernel
         file_put_contents($destination, $file);
     }
 
+    public function copyFileFromStubThenPutInFile($stub, $destination, $replace = [], $lineToPut = 0, bool $fromBottom = false)
+    {
+        $file = file_get_contents($this->stubsDir . '/' . $stub . '.stub');
+        foreach ($replace as $key => $value) {
+            $file = str_replace($key, $value, $file);
+        }
+
+        $lines = file($destination);
+        // $lines[$lineToPut] = $file;
+        if ($fromBottom) {
+            array_splice($lines, -$lineToPut, 0, $file);
+        } else {
+            array_splice($lines, $lineToPut, 0, $file);
+        }
+        file_put_contents($destination, implode('', $lines));
+    }
+
+    /**
+     * Run a console command
+     * 
+     * @param string $command
+     * @return void
+     */
     public function runCommand(string $command)
     {
         // run console command

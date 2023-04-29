@@ -1,0 +1,3 @@
+        $this->table('{{table}}')->create(function (Column $column) {
+            {{columns}}
+        });
