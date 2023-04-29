@@ -103,7 +103,7 @@ if (!function_exists('faker')) {
      * Create a new faker instance.
      * 
      * @param string $locale
-     * @return Faker\Factory
+     * @return Faker\Generator
      */
     function faker(string $locale = 'en_US')
     {

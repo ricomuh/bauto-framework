@@ -3,6 +3,7 @@
 namespace Engine\Console;
 
 use App\Database\Migrations\Migration;
+use App\Database\DatabaseSeeder;
 
 class Console extends Kernel
 {
@@ -22,7 +23,7 @@ class Console extends Kernel
         'migrate' => 'migrate',
         'migrate:rollback' => 'migrateRollback',
         'migrate:refresh' => 'migrateRefresh',
-
+        'seed' => 'seed',
     ];
 
     /**
@@ -169,5 +170,20 @@ class Console extends Kernel
         Migration::migrate();
         $time = microtime(true) - $start;
         Logger::success('Refreshed successfully in ' . round($time, 2) . ' seconds.');
+    }
+
+    /**
+     * Execute the seed command
+     * 
+     * @return void
+     */
+    public function seed()
+    {
+        // set the timer
+        $start = microtime(true);
+        Logger::log('Seeding...');
+        DatabaseSeeder::seed();
+        $time = microtime(true) - $start;
+        Logger::success('Seeded successfully in ' . round($time, 2) . ' seconds.');
     }
 }

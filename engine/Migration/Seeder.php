@@ -10,9 +10,10 @@ class Seeder
      *
      * @return void
      */
-    public function seed()
+    public static function seed()
     {
-        $this->run();
+        $seeder = new static;
+        $seeder->run();
     }
 
     /**
