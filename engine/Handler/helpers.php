@@ -75,6 +75,8 @@ if (!function_exists('url')) {
      */
     function url($path = '')
     {
+        $path = trim($path, '/');
+
         return request()->baseURL() . $path;
     }
 }

@@ -140,6 +140,16 @@ class Route
 
         foreach ($routes as $key => $value) {
             $routes[$key]['uri'] = $options['prefix'] . $value['uri'];
+            $routes[$key]['path'] = $this->parsePath($routes[$key]['uri']);
+
+            if (isset($options['params']))
+                $routes[$key]['params'] = $this->parseParams($routes[$key]['uri']);
+
+            if (isset($options['middleware']))
+                $routes[$key]['middleware'] = $options['middleware'];
+
+            if (isset($options['name']))
+                $routes[$key]['name'] = $options['name'] . $value['name'];
         }
 
         $this->routes = array_merge($this->routes, $routes);

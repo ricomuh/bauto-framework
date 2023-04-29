@@ -150,16 +150,20 @@ class RouterKernel
 
     public static function getUrl($route, $params = [])
     {
-        $route = new static;
-        $route->application($route->route);
+        $routeClass = new static;
+        $routeClass->application($routeClass->route);
 
-        $routes = $route->route->getRoutes();
-        foreach ($routes as $route) {
-            if ($route['name'] == $route) {
-                $url = $route['path'];
-                foreach ($params as $key => $value) {
-                    $url = str_replace(':' . $key, $value, $url);
+        $routes = $routeClass->route->getRoutes();
+
+        foreach ($routes as $routePath) {
+            if ($routePath['name'] == $route) {
+                $url = $routePath['uri'];
+                foreach ($params as $key => $param) {
+                    $url = str_replace(':' . $key, $param, $url);
                 }
+
+                $url = str_replace('//', '/', $url);
+
                 return $url;
             }
         }
