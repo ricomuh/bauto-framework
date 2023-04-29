@@ -52,7 +52,7 @@ class Console extends Kernel
      */
     public function newMigration(string $tableName = '')
     {
-        $name = 'create_' . $tableName . '_table';
+        $name = 'create_' . str($tableName)->plural()->snakeCase() . '_table';
         $table = [];
 
         if (empty($tableName)) {
