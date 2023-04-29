@@ -328,4 +328,33 @@ class Model
     {
         unset($this->$name);
     }
+
+    /**
+     * Set the dummy data factory.
+     * 
+     * @param int $count
+     * @return void
+     */
+    public static function dummy(int $count = 1)
+    {
+        $model = new static;
+        $data = [];
+        for ($i = 0; $i < $count; $i++) {
+            $data[] = $model->factory();
+        }
+
+        collect($data)->forEach(function ($item) use ($model) {
+            self::insert($item);
+        });
+    }
+
+    /**
+     * Set the dummy data factory.
+     * 
+     * @return array
+     */
+    public function factory()
+    {
+        return [];
+    }
 }

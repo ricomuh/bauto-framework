@@ -2,6 +2,8 @@
 
 namespace Engine\Console;
 
+use App\Database\Migrations\Migration;
+
 class Console extends Kernel
 {
     use TableConfiguration;
@@ -12,11 +14,15 @@ class Console extends Kernel
      * @var array
      */
     protected $commands = [
-        'new:crud' => 'newCrud',
+        // 'new:crud' => 'newCrud',
         'new:controller' => 'newController',
         'new:model' => 'newModel',
         'new:migration' => 'newMigration',
         'serve' => 'serve',
+        'migrate' => 'migrate',
+        'migrate:rollback' => 'migrateRollback',
+        'migrate:refresh' => 'migrateRefresh',
+
     ];
 
     /**
@@ -117,5 +123,51 @@ class Console extends Kernel
         $this->copyFileFromStub('controller',  $this->appDir . 'Controllers/' . $name . 'Controller.php', [
             '{{controller}}' => str($name)->studlyCase(),
         ]);
+    }
+
+    /**
+     * Execute the migrate command
+     * 
+     * @return void
+     */
+    public function migrate()
+    {
+        // set the timer
+        $start = microtime(true);
+        Logger::info('Migrating...');
+        Migration::migrate();
+        $time = microtime(true) - $start;
+        Logger::success('Migrated successfully in ' . round($time, 2) . ' seconds.');
+    }
+
+    /**
+     * Execute the migrate:rollback command
+     * 
+     * @return void
+     */
+    public function migrateRollback()
+    {
+        // set the timer
+        $start = microtime(true);
+        Logger::info('Rolling back...');
+        Migration::rollback();
+        $time = microtime(true) - $start;
+        Logger::success('Rolled back successfully in ' . round($time, 2) . ' seconds.');
+    }
+
+    /**
+     * Execute the migrate:refresh command
+     * 
+     * @return void
+     */
+    public function migrateRefresh()
+    {
+        // set the timer
+        $start = microtime(true);
+        Logger::info('Refreshing...');
+        Migration::rollback();
+        Migration::migrate();
+        $time = microtime(true) - $start;
+        Logger::success('Refreshed successfully in ' . round($time, 2) . ' seconds.');
     }
 }

@@ -97,3 +97,16 @@ if (!function_exists('cache')) {
         return new Engine\Helper\Cache();
     }
 }
+
+if (!function_exists('faker')) {
+    /**
+     * Create a new faker instance.
+     * 
+     * @param string $locale
+     * @return Faker\Factory
+     */
+    function faker(string $locale = 'en_US')
+    {
+        return Faker\Factory::create($locale);
+    }
+}

@@ -2,56 +2,90 @@
 
 namespace App\Controllers;
 
-use Bago\Http\Controller;
+use Engine\Handler\Controller;
 use App\Database\Models\{{name}};
 
 class {{name}}Controller extends Controller
 {
-
+    /**
+    * The index page, where all {{plural}} are listed.
+    *
+    * @return \Engine\Handler\Response\ViewResponse
+    */
     public function index()
     {
         ${{plural}} = {{name}}::all();
 
-        return $this->view('{{singular}}/index', compact('{{plural}}'));
+        return view('{{singular}}/index', compact('{{plural}}'));
     }
 
+    /**
+    * The create page, where a new {{singular}} can be created.
+    *
+    * @return \Engine\Handler\Response\ViewResponse
+    */
     public function create()
     {
-        return $this->view('{{singular}}/create');
+        return view('{{singular}}/create');
     }
 
+    /**
+    * The store method, which is called when a new {{singular}} is created.
+    *
+    * @return \Engine\Handler\Response\RedirectResponse
+    */
     public function store()
     {
         {{name}}::create($this->request->all());
 
-        return $this->redirect('/{{plural}}');
+        return redirect()->route('/{{plural}}');
     }
 
-    public function show($id)
+    /**
+    * The show method, which is called when a {{singular}} is shown.
+    *
+    * @param {{name}} ${{singular}}
+    * @return \Engine\Handler\Response\ViewResponse
+    */
+    public function show({{name}} ${{singular}})
     {
-        ${{singular}} = {{name}}::find($id);
-
-        return $this->view('{{singular}}/show', compact('{{singular}}'));
+        return view('{{singular}}/show', compact('{{singular}}'));
     }
 
-    public function edit($id)
+    /**
+    * The edit method, where a {{singular}} can be edited.
+    *
+    * @param {{name}} ${{singular}}
+    * @return \Engine\Handler\Response\ViewResponse
+    */
+    public function edit({{name}} ${{singular}})
     {
-        ${{singular}} = {{name}}::find($id);
-
-        return $this->view('{{singular}}/edit', compact('{{singular}}'));
+        return view('{{singular}}/edit', compact('{{singular}}'));
     }
 
-    public function update($id)
+    /**
+    * The update method, which is called when a {{singular}} is updated.
+    *
+    * @param {{name}} ${{singular}}
+    * @return \Engine\Handler\Response\RedirectResponse
+    */
+    public function update({{name}} ${{singular}})
     {
-        {{name}}::where('id', $id)->update($this->request->all());
+        ${{singular}}->update($this->request->all());
 
-        return $this->redirect('/{{plural}}');
+        return redirect()->route('/{{plural}}');
     }
 
-    public function destroy($id)
+    /**
+    * The destroy method, which is called when a {{singular}} is deleted.
+    *
+    * @param {{name}} ${{singular}}
+    * @return \Engine\Handler\Response\RedirectResponse
+    */
+    public function destroy({{name}} ${{singular}})
     {
-        {{name}}::destroy($id);
+        ${{singular}}->delete();
 
-        return $this->redirect('/{{plural}}');
+        return redirect()->route('/{{plural}}');
     }
 }

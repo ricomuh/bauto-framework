@@ -69,4 +69,51 @@ class Migrator
             $this->queries[] = $query;
         }
     }
+
+    /**
+     * Run the migration
+     * 
+     * @return void
+     */
+    public function migrate()
+    {
+        $this->run();
+        $this->setUpQueries();
+        foreach ($this->queries as $query) {
+            $this->runQuery($query);
+        }
+    }
+
+    /**
+     * Rollback the migration
+     * 
+     * @return void
+     */
+    public function rollback()
+    {
+        $this->run();
+        $this->setDownQueries();
+        foreach ($this->queries as $query) {
+            $this->runQuery($query);
+        }
+    }
+
+    /**
+     * Run the query
+     * 
+     * @param string $query
+     * @return void
+     */
+    public function runQuery($query)
+    {
+        $db = $GLOBALS['db'];
+        $db->query($query);
+    }
+
+    /**
+     * Get all migrations
+     */
+    public function run()
+    {
+    }
 }
