@@ -82,10 +82,10 @@ class Console extends Kernel
      * 
      * @param string $name
      * @param string $tableName
-     * @param array $table
+     * @param string $table
      * @return void
      */
-    public function createMigration(string $name, string $tableName, array $table)
+    public function createMigration(string $name, string $tableName, string $table)
     {
 
         $this->copyFileFromStub('migration', $this->appDir . 'Database/Migrations/' . $name . '.php', [
