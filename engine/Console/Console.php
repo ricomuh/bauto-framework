@@ -114,7 +114,7 @@ class Console extends Kernel
      */
     public function createController(string $name)
     {
-        $this->copyFileFromStub('controller',  $this->appDir . 'Controllers/' . $name . '.php', [
+        $this->copyFileFromStub('controller',  $this->appDir . 'Controllers/' . $name . 'Controller.php', [
             '{{controller}}' => str($name)->studlyCase(),
         ]);
     }

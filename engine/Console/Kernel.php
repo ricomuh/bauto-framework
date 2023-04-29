@@ -44,7 +44,8 @@ class Kernel
      * 
      * @var string
      */
-    protected $appDir = __DIR__ . '/../../app/';
+    // this file directory is in vendor/ricomuh/bauto-framework/engine/Console/Kernel.php
+    protected $appDir = __DIR__ . '/../../../../app/';
 
     /**
      * The commands
