@@ -1,0 +1,24 @@
+{
+  "name": "ricomuh/bauto-framework",
+  "description": "Bauto Framework",
+  "type": "library",
+  "keywords": [
+    "bauto",
+    "framework"
+  ],
+  "authors": [
+    {
+      "name": "Rico Muhammad",
+      "email": "rico@leolitgames.com"
+    }
+  ],
+  "autoload": {
+    "files": [
+      "engine/Helper/helpers.php"
+    ],
+    "psr-4": {
+      "Engine\\": "engine/"
+    }
+  },
+  "require": {}
+}
