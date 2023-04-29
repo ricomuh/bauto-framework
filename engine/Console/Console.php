@@ -38,6 +38,8 @@ class Console extends Kernel
     {
         $name = Logger::ask('Model name: ');
 
+        $this->createModel($name);
+
         if (Logger::confirm('Do you want to create a migration for this model?')) {
             $this->newMigration($name);
         }
