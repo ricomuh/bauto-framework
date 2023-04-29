@@ -44,11 +44,13 @@ trait TableConfiguration
         $table = '';
 
         if ($id) {
-            $table .= "\$table->id();\n";
+            $table .= "\$column->id();\n";
         }
 
         foreach ($fields as $field) {
-            $table .= "\$table->{$field['type']}('{$field['name']}')";
+            // add 3 indents
+            $table .= "\t\t\t";
+            $table .= "\$column->{$field['type']}('{$field['name']}')";
             if (!empty($field['flags'])) {
                 foreach ($field['flags'] as $flag) {
                     $table .= '->' . $flag . '()';
