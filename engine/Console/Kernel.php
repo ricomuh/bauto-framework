@@ -62,7 +62,7 @@ class Kernel
      */
     public static function run($argv)
     {
-        $console = new Console();
+        $console = new static;
         $console->parse($argv);
         $console->execute();
     }
