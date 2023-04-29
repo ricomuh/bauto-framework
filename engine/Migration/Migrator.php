@@ -52,7 +52,6 @@ class Migrator
             $query = rtrim($query, ',');
             $query .= ");";
             $this->queries[] = $query;
-            // echo $query . PHP_EOL . PHP_EOL;
         }
     }
 
@@ -63,9 +62,8 @@ class Migrator
      */
     public function setDownQueries()
     {
-        $query = '';
         foreach ($this->tables as $table) {
-            $query .= "DROP TABLE {$table->name};" . PHP_EOL;
+            $query = "DROP TABLE {$table->name};";
             $this->queries[] = $query;
         }
     }
