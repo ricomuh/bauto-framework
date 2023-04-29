@@ -1,6 +1,6 @@
 <?php
 
-namespace Engine\Database;
+namespace Engine\Migration;
 
 class Table
 {

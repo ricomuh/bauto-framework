@@ -14,7 +14,9 @@
   ],
   "autoload": {
     "files": [
-      "engine/Helper/helpers.php"
+      "engine/Helper/helpers.php",
+      "engine/Handler/helpers.php",
+      "engine/Frontend/helpers.php"
     ],
     "psr-4": {
       "Engine\\": "engine/"

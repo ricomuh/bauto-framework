@@ -3,6 +3,7 @@
 namespace Engine\Handler;
 
 use Engine\Router\URLParser;
+use Engine\Validation\Validator;
 
 class Request
 {

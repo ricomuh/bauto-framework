@@ -9,7 +9,7 @@ class Kernel
     protected $params = [];
     protected $flags = [];
 
-    protected $stubsDir = __DIR__ . '../stubs/';
+    protected $stubsDir = __DIR__ . './vendor/ricomuh/bauto/engine/Console/stubs';
 
     protected $commands = [];
 

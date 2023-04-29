@@ -1,6 +1,6 @@
 <?php
 
-namespace Engine\Handler;
+namespace Engine\Validation;
 
 class Validator
 {
