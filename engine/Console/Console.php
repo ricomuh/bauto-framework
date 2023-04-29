@@ -134,7 +134,7 @@ class Console extends Kernel
     {
         // set the timer
         $start = microtime(true);
-        Logger::info('Migrating...');
+        Logger::log('Migrating...');
         Migration::migrate();
         $time = microtime(true) - $start;
         Logger::success('Migrated successfully in ' . round($time, 2) . ' seconds.');
@@ -149,7 +149,7 @@ class Console extends Kernel
     {
         // set the timer
         $start = microtime(true);
-        Logger::info('Rolling back...');
+        Logger::log('Rolling back...');
         Migration::rollback();
         $time = microtime(true) - $start;
         Logger::success('Rolled back successfully in ' . round($time, 2) . ' seconds.');
@@ -164,7 +164,7 @@ class Console extends Kernel
     {
         // set the timer
         $start = microtime(true);
-        Logger::info('Refreshing...');
+        Logger::log('Refreshing...');
         Migration::rollback();
         Migration::migrate();
         $time = microtime(true) - $start;
