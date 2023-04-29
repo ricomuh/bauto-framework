@@ -1,5 +1,5 @@
 
         // Create {{table}} table
-        $this->table('{{table}}', function (Column $column) {
+        $this->table('{{table}}')->create(function (Column $column) {
             {{columns}}
         });

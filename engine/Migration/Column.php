@@ -4,9 +4,25 @@ namespace Engine\Migration;
 
 class Column
 {
+    /**
+     * The columns
+     * 
+     * @var array
+     */
     public $columns = [];
+
+    /**
+     * The current column
+     * 
+     * @var string
+     */
     public $currentColumn = '';
 
+    /**
+     * The column types
+     * 
+     * @var array
+     */
     public $columnTypes = [
         'id' => 'INT',
         'string' => 'VARCHAR',
@@ -16,6 +32,11 @@ class Column
         'text' => 'TEXT',
     ];
 
+    /**
+     * Get the column types
+     * 
+     * @return array
+     */
     public static function getColumnTypes()
     {
         $column = new self();
@@ -23,6 +44,11 @@ class Column
         return $column->columnTypes;
     }
 
+    /**
+     * The id column type
+     * 
+     * @return self
+     */
     public function id()
     {
         $this->columns[] = [
@@ -37,6 +63,12 @@ class Column
         return $this;
     }
 
+    /**
+     * The string column type
+     * 
+     * @param string $name
+     * @return self
+     */
     public function string($name)
     {
         $this->columns[] = [
@@ -50,6 +82,12 @@ class Column
         return $this;
     }
 
+    /**
+     * The integer column type
+     * 
+     * @param string $name
+     * @return self
+     */
     public function integer($name)
     {
         $this->columns[] = [
@@ -63,6 +101,12 @@ class Column
         return $this;
     }
 
+    /**
+     * The boolean column type
+     * 
+     * @param string $name
+     * @return self
+     */
     public function boolean($name)
     {
         $this->columns[] = [
@@ -76,6 +120,12 @@ class Column
         return $this;
     }
 
+    /**
+     * The datetime column type
+     * 
+     * @param string $name
+     * @return self
+     */
     public function datetime($name)
     {
         $this->columns[] = [
@@ -89,6 +139,12 @@ class Column
         return $this;
     }
 
+    /**
+     * The text column type
+     * 
+     * @param string $name
+     * @return self
+     */
     public function text($name)
     {
         $this->columns[] = [
@@ -101,6 +157,11 @@ class Column
         return $this;
     }
 
+    /**
+     * The timestamps column type
+     * 
+     * @return self
+     */
     public function timestamps()
     {
         $this->datetime('created_at');
@@ -109,6 +170,12 @@ class Column
         return $this;
     }
 
+    /**
+     * The foreignId column type
+     * 
+     * @param string $name
+     * @return self
+     */
     public function foreignId($name)
     {
         $this->columns[] = [
@@ -121,6 +188,11 @@ class Column
         return $this;
     }
 
+    /**
+     * Set the column as nullable
+     * 
+     * @return self
+     */
     public function nullable()
     {
         $this->columns[$this->currentColumn]['nullable'] = true;
@@ -128,6 +200,12 @@ class Column
         return $this;
     }
 
+    /**
+     * Set the column max length
+     * 
+     * @param int $length
+     * @return self
+     */
     public function max($length)
     {
         $this->columns[$this->currentColumn]['length'] = $length;

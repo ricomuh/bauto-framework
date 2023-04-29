@@ -8,6 +8,12 @@ class Migrator
     public $tables = [];
     public $queries = [];
 
+    /**
+     * Create a new migration
+     * 
+     * @param string $name
+     * @return Table
+     */
     public function table($name)
     {
         $this->tables[$name] = new Table($name);
@@ -15,6 +21,11 @@ class Migrator
         return $this->tables[$name];
     }
 
+    /**
+     * Set up the queries
+     * 
+     * @return void
+     */
     public function setUpQueries()
     {
         foreach ($this->tables as $table) {
@@ -45,6 +56,11 @@ class Migrator
         }
     }
 
+    /**
+     * Set down the queries
+     * 
+     * @return void
+     */
     public function setDownQueries()
     {
         $query = '';
