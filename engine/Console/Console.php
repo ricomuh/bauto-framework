@@ -85,7 +85,8 @@ class Console extends Kernel
      */
     public function createMigration(string $name, string $tableName, array $table)
     {
-        $this->copyFileFromStub('migration', __DIR__ . '/app/Database/Migrations/' . $name . '.php', [
+
+        $this->copyFileFromStub('migration', $this->appDir . 'Database/Migrations/' . $name . '.php', [
             '{{name}}' => str($name)->studlyCase(),
             '{{table}}' => str($tableName)->plural()->snakeCase(),
             '{{columns}}' => $table,
@@ -100,7 +101,7 @@ class Console extends Kernel
      */
     public function createModel(string $name)
     {
-        $this->copyFileFromStub('model', __DIR__ . '/app/Databases/Models/' . $name . '.php', [
+        $this->copyFileFromStub('model',  $this->appDir . 'Databases/Models/' . $name . '.php', [
             '{{name}}' => str($name)->studlyCase(),
         ]);
     }
@@ -113,7 +114,7 @@ class Console extends Kernel
      */
     public function createController(string $name)
     {
-        $this->copyFileFromStub('controller', __DIR__ . '/app/Http/Controllers/' . $name . '.php', [
+        $this->copyFileFromStub('controller',  $this->appDir . 'Controllers/' . $name . '.php', [
             '{{controller}}' => str($name)->studlyCase(),
         ]);
     }

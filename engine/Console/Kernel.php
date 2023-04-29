@@ -37,7 +37,14 @@ class Kernel
      * 
      * @var string
      */
-    protected $stubsDir = __DIR__ . './vendor/ricomuh/bauto/engine/Console/stubs';
+    protected $stubsDir = __DIR__ . '/stubs/';
+
+    /**
+     * The app directory
+     * 
+     * @var string
+     */
+    protected $appDir = __DIR__ . '/../../app/';
 
     /**
      * The commands
