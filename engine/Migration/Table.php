@@ -31,11 +31,10 @@ class Table
     /**
      * Create a new column
      * 
-     * @param string $name
-     * @param string $type
+     * @param callable $callback
      * @return void
      */
-    public function create($callback)
+    public function create(callable $callback)
     {
         $columns = new Column();
         $callback($columns);
