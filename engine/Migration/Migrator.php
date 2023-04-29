@@ -29,7 +29,7 @@ class Migrator
     public function setUpQueries()
     {
         foreach ($this->tables as $table) {
-            $query = "CREATE TABLE {$table->name} (" . PHP_EOL;
+            $query = "CREATE TABLE {$table->name} (";
             foreach ($table->columns as $column) {
                 if (!isset($column['name']) || !isset($column['type'])) {
                     continue;
@@ -47,10 +47,10 @@ class Migrator
                 if (isset($column['nullable'])) {
                     $query .= " NULL";
                 }
-                $query .= "," . PHP_EOL;
+                $query .= ",";
             }
-            $query = rtrim($query, ',' . PHP_EOL);
-            $query .= PHP_EOL . ");" . PHP_EOL;
+            $query = rtrim($query, ',');
+            $query .= ");";
             $this->queries[] = $query;
             // echo $query . PHP_EOL . PHP_EOL;
         }
