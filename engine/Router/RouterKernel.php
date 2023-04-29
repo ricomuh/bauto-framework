@@ -108,6 +108,11 @@ class RouterKernel
         $methodParams = (new \ReflectionMethod($controller, $method))->getParameters();
 
         foreach ($methodParams as $key => $param) {
+            // check if the parameter is dont have specific type or primitive type
+            if (!$param->hasType() || $param->getType()->isBuiltin())
+                continue;
+
+            // check if the parameter is a model
             $model = $param->getType()->getName();
             if (str($model)->contains('\\Models\\')) {
                 $params[$key] = new $model(true, [
