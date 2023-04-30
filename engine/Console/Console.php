@@ -33,7 +33,8 @@ class Console extends Kernel
      */
     public function serve()
     {
-        $this->runCommand('php -S localhost:8000 -t public');
+        Logger::log('Starting the Bauto Application Server on http://localhost:8000');
+        $this->runCommand('php -S localhost:8000 server.php');
     }
 
     /**
