@@ -10,6 +10,10 @@ trait URLParser
         $uri = filter_var($uri, FILTER_SANITIZE_URL);
         $uri = explode('/', $uri);
 
+        if ($uri[0] === '') {
+            array_shift($uri);
+        }
+
         return '/' . implode('/', $uri);
     }
 
