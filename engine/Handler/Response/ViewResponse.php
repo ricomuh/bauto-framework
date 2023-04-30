@@ -5,7 +5,7 @@ namespace Engine\Handler\Response;
 class ViewResponse
 {
     // This is the path to the views folder
-    protected $viewDir = '../app/Views/';
+    protected $viewDir = __DIR__ . '/../../../../../../app/Views/';
 
     protected $view;
     protected $data;

@@ -254,8 +254,7 @@ class Request
      */
     public function getBaseURL()
     {
-        $baseURL = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME'];
-        $baseURL = str_replace('index.php', '', $baseURL);
+        $baseURL = str_replace('index.php', '', $_SERVER['SCRIPT_NAME']);
 
         return $baseURL;
     }
