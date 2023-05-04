@@ -48,6 +48,8 @@ class RouterKernel
         $this->route = new Route();
         $this->request = new Request();
         $this->middlewareInstance = new $this->middleware();
+
+        session_start();
     }
 
     /**
