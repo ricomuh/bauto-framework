@@ -6,8 +6,18 @@ class Route
 {
     use URLParser;
 
+    /**
+     * List of routes
+     * 
+     * @var array
+     */
     protected $routes = [];
 
+    /**
+     * Current route
+     * 
+     * @var int
+     */
     protected $currentRoute = -1;
 
     /**

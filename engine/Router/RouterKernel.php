@@ -4,13 +4,39 @@ namespace Engine\Router;
 
 use Engine\Handler\Request;
 use Engine\Handler\Response\RedirectResponse;
+use Engine\Authorization\Middleware;
 
 class RouterKernel
 {
     use URLParser;
 
+    /**
+     * Route
+     * 
+     * @var Route
+     */
     public $route;
+
+    /**
+     * Request
+     * 
+     * @var Request
+     */
     public $request;
+
+    /**
+     * The middleware
+     * 
+     * @var Middleware
+     */
+    protected $middleware;
+
+    /**
+     * The middleware instance
+     * 
+     * @var Middleware
+     */
+    protected $middlewareInstance;
 
     /**
      * RouterKernel constructor
@@ -21,6 +47,7 @@ class RouterKernel
     {
         $this->route = new Route();
         $this->request = new Request();
+        $this->middlewareInstance = new $this->middleware();
     }
 
     /**
@@ -86,6 +113,17 @@ class RouterKernel
             }
 
             if ($matchedPath == count($route['path'])) {
+                if (isset($route['middleware'])) {
+                    $middleware = $this->middlewareInstance->check($route['middleware']);
+                    if ($middleware !== true) {
+                        if ($middleware instanceof RedirectResponse) {
+                            $middleware->render();
+                        }
+                        return false;
+                    }
+                }
+
+
                 $callback($route, $params);
 
                 return true;
@@ -137,8 +175,34 @@ class RouterKernel
             }
         }
 
+        // execute the controller method
+        $this->execute($controller, $method, $params);
+    }
+
+    /**
+     * Run the controller method
+     * 
+     * @param string $controller
+     * @param string $method
+     * @param array $params
+     * @return void
+     */
+    public function execute($controller, $method, $params = [])
+    {
         $controller = new $controller();
         $response = $controller->$method(...$params);
+
+        $this->renderResponse($response);
+    }
+
+    /**
+     * Render the response
+     * 
+     * @param mixed $response
+     * @return void
+     */
+    public function renderResponse($response)
+    {
         if ($response instanceof RedirectResponse) {
             $response->render();
             return;
@@ -148,6 +212,13 @@ class RouterKernel
         }
     }
 
+    /**
+     * Get the url of the route
+     * 
+     * @param string $route
+     * @param array $params
+     * @return string|null
+     */
     public static function getUrl($route, $params = [])
     {
         $routeClass = new static;
