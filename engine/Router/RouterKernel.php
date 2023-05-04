@@ -118,9 +118,7 @@ class RouterKernel
                 if (isset($route['middleware'])) {
                     $middleware = $this->middlewareInstance->check($route['middleware']);
                     if ($middleware !== true) {
-                        if ($middleware instanceof RedirectResponse) {
-                            $middleware->render();
-                        }
+                        $this->renderResponse($middleware);
                         return false;
                     }
                 }
