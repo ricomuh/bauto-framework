@@ -1,6 +1,6 @@
 <?php
 
-define('ROOT', dirname(__DIR__ . '/../../../..'));
+define('ROOT', dirname(__DIR__ . '/../../../../../../'));
 
 if (!function_exists('str')) {
     /**
