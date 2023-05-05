@@ -9,7 +9,8 @@ class Cache
      * 
      * @var string
      */
-    protected $cacheDir = __DIR__ . '/../../../../../storage/cache/';
+    // protected $cacheDir = __DIR__ . '/../../../../../storage/cache/';
+    protected $cacheDir = ROOT . '/storage/cache/';
 
     /**
      * Cache file extension

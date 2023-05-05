@@ -5,13 +5,50 @@ namespace Engine\Handler\Response;
 class ViewResponse
 {
     // This is the path to the views folder
-    protected $viewDir = __DIR__ . '/../../../../../../app/Views/';
+    // protected $viewDir = __DIR__ . '/../../../../../../app/Views/';
+    // This is the path to the views folder
+    protected $viewDir = ROOT . '/app/Views/';
 
+    /**
+     * The view
+     * 
+     * @var string
+     */
     protected $view;
+
+    /**
+     * The data
+     * 
+     * @var array
+     */
     protected $data;
+
+    /**
+     * The content
+     * 
+     * @var string
+     */
     protected $content;
+
+    /**
+     * The sections
+     * 
+     * @var array
+     */
     protected $sections = [];
+
+    /**
+     * The current section
+     * 
+     * @var string
+     */
     protected $currentSection;
+
+    /**
+     * The extends
+     * 
+     * @var ViewResponse
+     */
     protected $extends;
 
     /**

@@ -1,5 +1,7 @@
 <?php
 
+define('ROOT', dirname(__DIR__ . '/../../../..'));
+
 if (!function_exists('str')) {
     /**
      * Create a new stringable object from the given string.
